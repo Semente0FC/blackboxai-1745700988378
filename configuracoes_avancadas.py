@@ -32,6 +32,15 @@ class AdvancedSettingsWindow:
         self.window.resizable(False, False)
         WindowManager.apply_modern_style(self.window)
         
+        # Configure ttk styles
+        self.style = ttk.Style()
+        self.style.configure(
+            "Accent.TButton",
+            background="#BB86FC",
+            foreground="white",
+            padding=10
+        )
+        
         # Get theme from parent
         self.current_theme = "dark" if self.parent.cget("bg") == "#121212" else "light"
         ThemeManager.apply_theme(self.window, self.current_theme)
@@ -241,12 +250,3 @@ class AdvancedSettingsWindow:
             }
             self.window.destroy()
             AdvancedSettingsWindow(self.parent)
-
-# Configure ttk styles
-style = ttk.Style()
-style.configure(
-    "Accent.TButton",
-    background="#BB86FC",
-    foreground="white",
-    padding=10
-)
