@@ -8,3 +8,37 @@
 2025-04-26 21:09:51,644 - INFO - Initializing login window
 2025-04-26 21:09:51,677 - WARNING - Failed to apply modern window style
 2025-04-26 21:09:51,698 - ERROR - Logo animation error: invalid command name ".!frame.!frame.!label"
+2025-04-26 21:23:42,561 - ERROR - Key generation error: [Errno 6] No such device or address
+2025-04-26 21:23:42,752 - INFO - Starting FutureMT5 application
+2025-04-26 21:23:42,848 - WARNING - Failed to apply modern window style: module 'ctypes' has no attribute 'windll'
+2025-04-26 21:23:42,888 - INFO - Splash screen initialized
+2025-04-26 21:23:46,095 - INFO - Initializing login window
+2025-04-26 21:23:46,141 - WARNING - Failed to apply modern window style
+2025-04-26 21:23:46,162 - ERROR - Logo animation error: invalid command name ".!frame.!frame.!label"
+2025-04-26 21:36:03,295 - ERROR - Key generation error: [Errno 6] No such device or address
+2025-04-26 21:36:03,455 - INFO - Starting FutureMT5 application
+2025-04-26 21:36:03,544 - WARNING - Failed to apply modern window style: module 'ctypes' has no attribute 'windll'
+2025-04-26 21:36:03,584 - INFO - Splash screen initialized
+2025-04-26 21:36:06,790 - INFO - Initializing login window
+2025-04-26 21:36:06,832 - WARNING - Failed to apply modern window style
+2025-04-26 21:36:06,845 - ERROR - Logo animation error: invalid command name ".!frame.!frame.!label"
+2025-04-26 21:37:09,964 - ERROR - Key generation error: [Errno 6] No such device or address
+2025-04-26 21:37:10,015 - INFO - Starting FutureMT5 application
+2025-04-26 21:37:10,047 - WARNING - Failed to apply modern window style: module 'ctypes' has no attribute 'windll'
+2025-04-26 21:37:10,056 - INFO - Splash screen initialized
+2025-04-26 21:37:13,261 - INFO - Initializing login window
+2025-04-26 21:37:13,282 - WARNING - Failed to apply modern window style
+2025-04-26 21:37:13,304 - ERROR - Logo animation error: invalid command name ".!frame.!frame.!label"
+2025-04-26 21:43:58,305 - ERROR - Key generation error: [Errno 6] No such device or address
+2025-04-26 21:43:58,430 - INFO - Starting FutureMT5 application
+2025-04-26 21:43:58,515 - WARNING - Failed to apply modern window style: module 'ctypes' has no attribute 'windll'
+2025-04-26 21:43:58,560 - INFO - Splash screen initialized
+2025-04-26 21:44:01,766 - INFO - Initializing login window
+2025-04-26 21:44:01,782 - WARNING - Failed to apply modern window style
+2025-04-26 21:44:01,804 - ERROR - Logo animation error: invalid command name ".!frame.!frame.!label"
+2025-04-26 21:50:25,863 - ERROR - Key generation error: [Errno 6] No such device or address
+2025-04-26 21:53:07,746 - ERROR - Key generation error: [Errno 6] No such device or address
+2025-04-26 21:53:11,003 - WARNING - Failed to apply modern window style: module 'ctypes' has no attribute 'windll'
+2025-04-26 21:53:11,122 - INFO - Splash screen initialized
+2025-04-26 21:53:14,395 - WARNING - Failed to apply modern window style
+2025-04-26 21:53:14,417 - ERROR - Logo animation error: invalid command name ".!frame.!frame.!label"
