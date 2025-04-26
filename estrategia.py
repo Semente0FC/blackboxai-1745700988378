@@ -1,4 +1,4 @@
-import MetaTrader5 as mt5
+import mt5_mock as mt5
 import time
 import logging
 from typing import Optional, Tuple, List, Callable
