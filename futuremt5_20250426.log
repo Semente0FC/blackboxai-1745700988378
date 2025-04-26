@@ -1,0 +1,10 @@
+2025-04-26 21:01:18,765 - ERROR - Key generation error: [Errno 6] No such device or address
+2025-04-26 21:04:01,172 - ERROR - Key generation error: [Errno 6] No such device or address
+2025-04-26 21:07:00,728 - ERROR - Key generation error: [Errno 6] No such device or address
+2025-04-26 21:09:48,305 - ERROR - Key generation error: [Errno 6] No such device or address
+2025-04-26 21:09:48,357 - INFO - Starting FutureMT5 application
+2025-04-26 21:09:48,388 - WARNING - Failed to apply modern window style: module 'ctypes' has no attribute 'windll'
+2025-04-26 21:09:48,427 - INFO - Splash screen initialized
+2025-04-26 21:09:51,644 - INFO - Initializing login window
+2025-04-26 21:09:51,677 - WARNING - Failed to apply modern window style
+2025-04-26 21:09:51,698 - ERROR - Logo animation error: invalid command name ".!frame.!frame.!label"
