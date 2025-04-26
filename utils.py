@@ -1,6 +1,7 @@
 import json
 import os
 import tkinter as tk
+from tkinter import ttk
 import ctypes
 import logging
 import mt5_mock as mt5
