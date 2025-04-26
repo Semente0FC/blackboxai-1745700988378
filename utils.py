@@ -3,7 +3,7 @@ import os
 import tkinter as tk
 import ctypes
 import logging
-import MetaTrader5 as mt5
+import mt5_mock as mt5
 from typing import Optional, Dict, List, Tuple
 from pathlib import Path
 from datetime import datetime
