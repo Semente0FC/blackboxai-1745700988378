@@ -1,8 +1,8 @@
 import tkinter as tk
 from tkinter import messagebox, ttk
 import logging
-import MetaTrader5 as mt5
-from utils import salvar_login, carregar_login
+import mt5_mock as mt5
+from utils import login_manager
 from painel import PainelApp
 import ctypes
 
@@ -234,7 +234,7 @@ class LoginApp:
             
             # Save credentials if requested
             if self.check_save.get():
-                salvar_login(server, login, password)
+                login_manager.save_login(server, login, password)
             
             messagebox.showinfo("Success", "✅ Connected successfully!")
             
@@ -321,11 +321,11 @@ class LoginApp:
     def load_saved_credentials(self):
         """Load saved login credentials if available."""
         try:
-            saved_data = carregar_login()
+            saved_data = login_manager.load_login()
             if saved_data:
                 self.entry_server.insert(0, saved_data.get("server", ""))
                 self.entry_login.insert(0, str(saved_data.get("login", "")))
-                self.entry_password.insert(0, saved_data.get("senha", ""))
+                self.entry_password.insert(0, saved_data.get("password", ""))
                 self.check_save.set(True)
         except Exception as e:
             logging.error(f"Error loading saved credentials: {str(e)}")
