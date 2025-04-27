@@ -4,51 +4,49 @@ import time
 import logging
 from typing import Callable
 import ctypes
+import platform
+
+# Check if running on Windows
+IS_WINDOWS = platform.system() == 'Windows'
 
 class SplashScreen(tk.Tk):
-    """
-    Modern splash screen with smooth animations and loading indicators.
-    """
+    """Modern splash screen with smooth animations."""
     
     def __init__(self, on_close: Callable[[], None]):
-        """
-        Initialize splash screen with modern design and animations.
-        
-        Args:
-            on_close: Callback function to execute when splash screen closes
-        """
+        """Initialize splash screen."""
         super().__init__()
-        
-        # Initialize properties
         self.on_close = on_close
-        self.alpha = 0.0
+        self.alpha = 0.0  # Store alpha value
         
-        # Configure window
+        # Set DPI awareness for Windows
+        if IS_WINDOWS:
+            try:
+                ctypes.windll.shcore.SetProcessDpiAwareness(1)
+            except:
+                pass
+        
         self.setup_window()
-        
-        # Create UI elements
-        self.create_ui_elements()
-        
-        # Start animations
+        self.create_ui()
         self.start_animations()
         
         logging.info("Splash screen initialized")
 
     def setup_window(self):
-        """Configure the main window properties."""
-        # Window setup
+        """Configure the main window."""
         self.title("Future MT5")
         self.geometry("600x300")
         self.configure(bg="#121212")
-        self.overrideredirect(True)
+        self.overrideredirect(True)  # Borderless window
         self.center_window()
         self.attributes('-alpha', self.alpha)
         
-        # Apply modern styling
-        self.apply_modern_style()
+        # Window styling
+        self.attributes('-topmost', True)  # Keep on top
+        if IS_WINDOWS:
+            self.attributes('-toolwindow', True)  # No taskbar icon on Windows
 
-    def create_ui_elements(self):
-        """Create and arrange UI elements."""
+    def create_ui(self):
+        """Create user interface elements."""
         # Main container
         self.container = tk.Frame(self, bg="#121212")
         self.container.pack(fill=tk.BOTH, expand=True)
@@ -58,10 +56,11 @@ class SplashScreen(tk.Tk):
         logo_frame.pack(expand=True)
         
         # Rocket emoji with glow effect
+        font_family = "Segoe UI" if IS_WINDOWS else "Helvetica"
         self.logo = tk.Label(
             logo_frame,
             text="🚀",
-            font=("Helvetica", 48),
+            font=(font_family, 48),
             bg="#121212",
             fg="white"
         )
@@ -71,7 +70,7 @@ class SplashScreen(tk.Tk):
         self.title_label = tk.Label(
             logo_frame,
             text="FUTURE MT5",
-            font=("Helvetica", 24, "bold"),
+            font=(font_family, 24, "bold"),
             bg="#121212",
             fg="#BB86FC"
         )
@@ -81,7 +80,7 @@ class SplashScreen(tk.Tk):
         self.subtitle = tk.Label(
             logo_frame,
             text="Trading Automation Platform",
-            font=("Helvetica", 12),
+            font=(font_family, 12),
             bg="#121212",
             fg="#03DAC6"
         )
@@ -111,7 +110,7 @@ class SplashScreen(tk.Tk):
         )
 
     def start_animations(self):
-        """Start all animations in separate threads."""
+        """Start all animations."""
         # Start fade-in animation
         threading.Thread(target=self.animate_fade_in, daemon=True).start()
         
@@ -155,26 +154,26 @@ class SplashScreen(tk.Tk):
             while True:
                 # Increase size
                 for size in range(48, 52, 1):
-                    self.logo.configure(font=("Helvetica", size))
+                    self.logo.configure(font=(self.logo.cget("font").split()[0], size))
                     time.sleep(0.05)
                 
                 # Decrease size
                 for size in range(52, 48, -1):
-                    self.logo.configure(font=("Helvetica", size))
+                    self.logo.configure(font=(self.logo.cget("font").split()[0], size))
                     time.sleep(0.05)
                     
         except Exception as e:
             logging.error(f"Logo animation error: {str(e)}")
 
     def close_splash(self):
-        """Close splash screen and call the callback function."""
+        """Close splash screen with fade-out effect."""
         try:
-            # Fade out effect
+            # Fade out
             for i in range(10, -1, -1):
                 self.alpha = i / 10
                 self.attributes('-alpha', self.alpha)
                 time.sleep(0.05)
-            
+                
             self.destroy()
             self.on_close()
             
@@ -182,32 +181,13 @@ class SplashScreen(tk.Tk):
             logging.error(f"Error closing splash screen: {str(e)}")
 
     def center_window(self):
-        """Center the window on the screen."""
+        """Center window on screen."""
         self.update_idletasks()
         width = self.winfo_width()
         height = self.winfo_height()
         x = (self.winfo_screenwidth() // 2) - (width // 2)
         y = (self.winfo_screenheight() // 2) - (height // 2)
         self.geometry(f"+{x}+{y}")
-
-    def apply_modern_style(self):
-        """Apply modern window styling with rounded corners."""
-        try:
-            hwnd = ctypes.windll.user32.GetParent(self.winfo_id())
-            
-            class MARGINS(ctypes.Structure):
-                _fields_ = [
-                    ("cxLeftWidth", ctypes.c_int),
-                    ("cxRightWidth", ctypes.c_int),
-                    ("cyTopHeight", ctypes.c_int),
-                    ("cyBottomHeight", ctypes.c_int)
-                ]
-            
-            margins = MARGINS(2, 2, 2, 2)
-            ctypes.windll.dwmapi.DwmExtendFrameIntoClientArea(hwnd, ctypes.byref(margins))
-            
-        except Exception as e:
-            logging.warning(f"Failed to apply modern window style: {str(e)}")
 
 if __name__ == "__main__":
     # Test splash screen
