@@ -3,6 +3,10 @@ import os
 import tkinter as tk
 from tkinter import ttk
 import ctypes
+import platform
+
+# Check if running on Windows
+IS_WINDOWS = platform.system() == 'Windows'
 import logging
 import mt5_mock as mt5
 from typing import Optional, Dict, List, Tuple
@@ -226,28 +230,33 @@ class WindowManager:
 
     @staticmethod
     def apply_modern_style(window: tk.Tk):
-        """
-        Apply modern window styling.
-        
-        Args:
-            window: Window to style
-        """
+        """Apply modern window styling."""
         try:
-            hwnd = ctypes.windll.user32.GetParent(window.winfo_id())
+            if IS_WINDOWS:
+                # Enable DPI awareness
+                try:
+                    ctypes.windll.shcore.SetProcessDpiAwareness(1)
+                except:
+                    pass
+
+                # Set window attributes
+                window.attributes('-alpha', 1.0)
+                window.attributes('-topmost', True)
+                
+                # Modern window frame
+                GWL_STYLE = -16
+                WS_MINIMIZEBOX = 0x00020000
+                WS_MAXIMIZEBOX = 0x00010000
+                
+                hwnd = ctypes.windll.user32.GetParent(window.winfo_id())
+                style = ctypes.windll.user32.GetWindowLongW(hwnd, GWL_STYLE)
+                style = style & ~WS_MAXIMIZEBOX  # Remove maximize button
+                ctypes.windll.user32.SetWindowLongW(hwnd, GWL_STYLE, style)
+            else:
+                # Basic styling for non-Windows platforms
+                window.attributes('-alpha', 1.0)
+                window.attributes('-topmost', True)
             
-            class MARGINS(ctypes.Structure):
-                _fields_ = [
-                    ("cxLeftWidth", ctypes.c_int),
-                    ("cxRightWidth", ctypes.c_int),
-                    ("cyTopHeight", ctypes.c_int),
-                    ("cyBottomHeight", ctypes.c_int)
-                ]
-            
-            margins = MARGINS(2, 2, 2, 2)
-            ctypes.windll.dwmapi.DwmExtendFrameIntoClientArea(
-                hwnd, 
-                ctypes.byref(margins)
-            )
         except Exception as e:
             logging.warning(f"Modern style application failed: {str(e)}")
 
