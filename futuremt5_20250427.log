@@ -1,0 +1,3 @@
+2025-04-27 00:07:26,376 - ERROR - Key generation error: [Errno 6] No such device or address
+2025-04-27 00:07:26,398 - ERROR - Application error: no display name and no $DISPLAY environment variable
+2025-04-27 00:14:09,330 - ERROR - Key generation error: [Errno 6] No such device or address
